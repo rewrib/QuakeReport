@@ -55,16 +55,13 @@ public final class QueryUtils {
                 JSONObject propertiesObject = c.getJSONObject("properties");
                 String mag = propertiesObject.getString("mag");
                 String place = propertiesObject.getString("place");
-                String time = propertiesObject.getString("time");
+                long time = propertiesObject.getLong("time");
 
                 Earthquake earthquake = new Earthquake(mag, place,time);
                 earthquakes.add(earthquake);
 
             }
 
-
-            // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            // build up a list of Earthquake objects with the corresponding data.
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
