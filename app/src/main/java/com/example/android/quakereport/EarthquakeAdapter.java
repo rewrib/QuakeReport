@@ -13,6 +13,8 @@ import java.util.Date;
 
 public class EarthquakeAdapter extends ArrayAdapter {
     private static final String LOG_TAG = EarthquakeAdapter.class.getSimpleName();
+    String locationOffset;
+    String locationName;
 
 
     public EarthquakeAdapter(Activity context, ArrayList<Earthquake> earthquakes) {
@@ -35,13 +37,30 @@ public class EarthquakeAdapter extends ArrayAdapter {
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.mag);
         magnitudeTextView.setText(currentEarthquake.getMagnitude());
 
-        TextView locationTextView = (TextView) listItemView.findViewById(R.id.location);
-        locationTextView.setText(currentEarthquake.getLocation());
+        String oldLocation = currentEarthquake.getLocation();
+
+        if (oldLocation.contains("of")) {
+            String[] a = oldLocation.split("of");
+            locationOffset = a[0] + "of";
+            locationName = a[1];
+        } else {
+            locationOffset = "Near the";
+            locationName = oldLocation;
+        }
+
+        TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.location_offset);
+        locationOffsetView.setText(locationOffset);
+
+        TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.location);
+        primaryLocationView.setText(locationName);
+
 
         Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
+
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
         String formattedDate = formatDate(dateObject);
         dateView.setText(formattedDate);
+
         TextView timeView = (TextView) listItemView.findViewById(R.id.time);
         String formattedTime = formatTime(dateObject);
         timeView.setText(formattedTime);
