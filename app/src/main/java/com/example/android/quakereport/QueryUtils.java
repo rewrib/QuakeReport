@@ -54,7 +54,7 @@ public final class QueryUtils {
             for (int i = 0; i < featuresArray.length(); i++) {
                 JSONObject c = featuresArray.getJSONObject(i);
                 JSONObject propertiesObject = c.getJSONObject("properties");
-                String mag = propertiesObject.getString("mag");
+                double mag = propertiesObject.getDouble("mag");
                 String place = propertiesObject.getString("place");
                 long time = propertiesObject.getLong("time");
 
