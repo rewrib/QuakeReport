@@ -84,6 +84,11 @@ public class EarthquakeActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
+
+        View loadingSpinner = findViewById(R.id.loading_spinner);
+        loadingSpinner.setVisibility(View.GONE);
+
+
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
 
